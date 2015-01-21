@@ -1,0 +1,24 @@
+<div class="formulario-cadastro">
+  <%= simple_nested_form_for [:users,@user], :html => { :multipart => true }   do |f| %>
+    <%= f.error_notification %>
+
+    <label class="<%= f.object.errors.messages[:avatar].blank? ? '' : 'imagem-logo-label field_with_errors' %>">
+    	Image must be .png or .jpg in max 200x200 px)</label>
+    <div class="field file-field">
+      <div class="imagem-file-upload">Logo</div>
+      <%= f.input :logo  , :placeholder => 'choose your logo', :label => false %>
+      <%= f.hidden_field :avatar_cache %> 
+    </div>
+ 	<% if @user.logo.exists?  %>
+ 	<label class="field">Selected image</label>
+		<div class="field file-field">
+	      <%= image_tag @user.logo.url , :style => "max-width: 50px; max-heigth: 50px;" %>
+	    </div>
+    <% end %>
+
+      <div class="actions">
+        <%= f.submit @user.new_record? ? 'Add' : 'Update' %>
+      </div>
+
+  <% end %>
+</div>
