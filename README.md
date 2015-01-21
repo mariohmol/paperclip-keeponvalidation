@@ -2,6 +2,11 @@
 
 Here we have an example of how to use paperclip and when validatin your form, if any validation errors occurs, you files will be keep on form. Without that, your use will have to upload all files again.
 
+This came from a contribution from galatians:
+
+* http://stackoverflow.com/questions/15680484/how-to-persist-file-upload-fields-after-a-rails-validation-error/
+
+
 # Single File
 
 First configure your base class ActiveRecord to have shared methods:
