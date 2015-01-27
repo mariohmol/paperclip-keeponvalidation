@@ -20,14 +20,14 @@ module ActiveRecord
     end
     
     #ex: @avatar_cache = cache_files(avatar,@avatar_cache,lambda {|f| assign_attributes(avatar: f)})
-    def cache_files(avatar,avatar_cache,executar = {})
-      if avatar.queued_for_write[:original]
-        FileUtils.cp(avatar.queued_for_write[:original].path, avatar.path(:original))
-        avatar_cache = encrypt(avatar.path(:original))
-      elsif avatar_cache.present?
-        File.open(decrypt(avatar_cache)) {|f| executar.call(f) }
+    def cache_files(field,field_cache,executar = {})
+      if field.queued_for_write[:original]
+        FileUtils.cp(field.queued_for_write[:original].path, field.path(:original))
+        field_cache = encrypt(field.path(:original))
+      elsif field_cache.present?
+        File.open(decrypt(field_cache)) {|f| executar.call(f) }
       end
-      return avatar_cache
+      return field_cache
     end
     
 	end
