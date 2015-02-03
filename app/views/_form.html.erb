@@ -12,7 +12,9 @@
  	<% if @user.logo.exists?  %>
  	<label class="field">Selected image</label>
 		<div class="field file-field">
-	      <%= image_tag @user.logo.url , :style => "max-width: 50px; max-heigth: 50px;" %>
+			<%= link_to @user.logo.url, target: "_new" do %>
+	      		<%= image_tag @user.logo.url , :style => "max-width: 50px; max-heigth: 50px;" %>
+	      	<% end %>
 	    </div>
     <% end %>
 
